@@ -1,6 +1,6 @@
 # FXRates
 
-TODO: Write a gem description
+Simple Currency Converter based on ECB data
 
 ## Installation
 
