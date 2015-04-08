@@ -20,6 +20,8 @@ module FXRates
 
   	end
 
+    
+
   
     def self.currency_list
 
@@ -31,6 +33,22 @@ module FXRates
          currencies = data_file.xpath("//*[@time = '#{Time.at(Time.now.to_i - 86400).strftime("%Y-%m-%d")}']").children.map {|m| m.attribute("currency").inner_text}
       end
     end 
+
+
+
+
+    def self.dates
+
+      fetch_data("data.xml") if !File.exist?('data.xml')
+
+      data_file = Nokogiri::XML File.open("data.xml")
+
+      if data_file.xpath("//Cube") 
+         currencies = data_file.xpath("//xmlns:Cube").map { |m| m.attribute("time")}.compact.map {|m| m.inner_text}
+      end
+    end
+
+
 
 
     def self.fetch_data(file_name)
