@@ -30,5 +30,20 @@ module FXRates
 			end	
 
 		end
+
+
+		context "To fetch currency list" do
+
+			let(:currencies) { ExchangeRate.currency_list }
+
+			it "returns an array of currencies" do
+				expect(currencies).to be_a(Array)
+			end
+
+			it "returns an array with at least one element" do
+				expect(currencies.size).to be > 0
+			end
+
+		end
 	end
 end	
