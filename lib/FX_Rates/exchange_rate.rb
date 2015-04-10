@@ -55,7 +55,7 @@ module FXRates
 
 
     def self.file_today?(file_name)
-        File.mtime(file_name).strftime("%Y-%m-%d") == Date.today.strftime("%Y-%m-%d")
+        File.ctime(file_name).strftime("%Y-%m-%d") == Date.today.strftime("%Y-%m-%d")
     end  
   	
 
