@@ -26,9 +26,8 @@ module FXRates
       data_file = Nokogiri::XML File.open("data.xml")
 
 
-      # ECB may not have current day data, hence 86400 secs or one day previous is considered current day
-      if data_file.xpath("//*[@time = '#{Time.at(Time.now.to_i - 86400).strftime("%Y-%m-%d")}']") 
-         currencies = data_file.xpath("//*[@time = '#{Time.at(Time.now.to_i - 86400).strftime("%Y-%m-%d")}']").children.map {|m| m.attribute("currency").inner_text}
+      if data_file.xpath("//*[@time = '#{dates.max}']") 
+         currencies = data_file.xpath("//*[@time = '#{dates.max}']").children.map {|m| m.attribute("currency").inner_text}
       end
     end 
 
@@ -40,7 +39,7 @@ module FXRates
       data_file = Nokogiri::XML File.open("data.xml")
 
       if data_file.xpath("//Cube") 
-         currencies = data_file.xpath("//xmlns:Cube").map { |m| m.attribute("time")}.compact.map {|m| m.inner_text}
+         date_list = data_file.xpath("//xmlns:Cube").map { |m| m.attribute("time")}.compact.map {|m| m.inner_text}
       end
     end
 
