@@ -17,14 +17,14 @@ module FXRates
 
 
 
-  	def at(date, from_currency, to_currency)
-        if @data_file.xpath("//*[@time = '#{date}']") 
-           to_rate = @data_file.xpath("//*[@time = '#{date}']").at_css("[@currency = '#{to_currency}']").attribute("rate").inner_text
-           from_rate = @data_file.xpath("//*[@time = '#{date}']").at_css("[@currency = '#{from_currency}']").attribute("rate").inner_text
+    def at(date, from_currency, to_currency)
+      if @data_file.xpath("//*[@time = '#{date}']") 
+        to_rate = @data_file.xpath("//*[@time = '#{date}']").at_css("[@currency = '#{to_currency}']").attribute("rate").inner_text
+        from_rate = @data_file.xpath("//*[@time = '#{date}']").at_css("[@currency = '#{from_currency}']").attribute("rate").inner_text
 
-           to_rate.to_f / from_rate.to_f
-        end
-  	end
+        to_rate.to_f / from_rate.to_f
+      end
+    end
     
 
     def fetch_data(file_name)
