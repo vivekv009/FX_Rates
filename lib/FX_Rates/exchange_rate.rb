@@ -8,7 +8,7 @@ module FXRates
     attr_accessor :currencies, :dates
 
     def initialize
-      fetch_data("data.xml") if !File.exist?('data.xml') || !file_today?("data.xml")
+      fetch_data("data.xml") 
       @data_file = Nokogiri::XML File.open("data.xml")
 
       @dates = @data_file.xpath("//xmlns:Cube").map { |m| m.attribute("time")}.compact.map {|m| m.inner_text} if @data_file.xpath("//Cube") 
@@ -28,16 +28,15 @@ module FXRates
     
 
     def fetch_data(file_name)
-         remote_data = open("http://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml").read
-         File.open(file_name, 'w') { |file| file.write(remote_data) }
+        begin
+         remote_data = open("http://www.ecb.eurot.eu/stats/eurofxref/eurofxref-hist-90d.xml").read
+        rescue OpenURI::HTTPError => e
+          puts "Error #{e}"
+        end 
+
+        File.open(file_name, 'w') { |file| file.write(remote_data) } if e.nil?
     end  
 
-
-
-    def file_today?(file_name)
-         File.ctime(file_name).strftime("%Y-%m-%d") == Date.today.strftime("%Y-%m-%d")
-    end  
-  	
 
   end	
 end
