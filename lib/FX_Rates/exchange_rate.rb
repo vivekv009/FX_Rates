@@ -17,19 +17,19 @@ module FXRates
 
 
 
-  	def at(date, from_currency, to_currency)
-        if @data_file.xpath("//*[@time = '#{date}']") 
-           to_rate = @data_file.xpath("//*[@time = '#{date}']").at_css("[@currency = '#{to_currency}']").attribute("rate").inner_text
-           from_rate = @data_file.xpath("//*[@time = '#{date}']").at_css("[@currency = '#{from_currency}']").attribute("rate").inner_text
+    def at(date, from_currency, to_currency)
+      if @data_file.xpath("//*[@time = '#{date}']") 
+        to_rate = @data_file.xpath("//*[@time = '#{date}']").at_css("[@currency = '#{to_currency}']").attribute("rate").inner_text
+        from_rate = @data_file.xpath("//*[@time = '#{date}']").at_css("[@currency = '#{from_currency}']").attribute("rate").inner_text
 
-           to_rate.to_f / from_rate.to_f
-        end
-  	end
+        to_rate.to_f / from_rate.to_f
+      end
+    end
     
 
     def fetch_data(file_name)
         begin
-         remote_data = open("http://www.ecb.eurot.eu/stats/eurofxref/eurofxref-hist-90d.xml").read
+         remote_data = open("http://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml").read
         rescue OpenURI::HTTPError => e
           puts "Error #{e}"
         end 
