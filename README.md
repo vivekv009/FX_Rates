@@ -21,16 +21,21 @@ Or install it yourself as:
 ## Usage
 
 Create an instance of ExchangeRate class by (Make sure you have network connection for latest rates):
-rates = FXRates::ExchangeRate.new
+
+    $ require 'FX_Rates'
+    $ rates = FXRates::ExchangeRate.new
 
 ## To view the list of currencies supported:
-rates.currencies
+
+    $ rates.currencies
 
 ##  To view the list of dates for which rates are available (upto 90 days from current date):
-rates.dates
+
+    $ rates.dates
 
 ## To convert between two available currencies on a certain date:
-rates.at(date, from_currency, to_currency)
+
+    $ rates.at(date, from_currency, to_currency)
 
 ## Contributing
 
