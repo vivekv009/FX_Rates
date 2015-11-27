@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-Create an instance of ExchangeRate class by (Make sure you have network connection for latest rates):
+Create an instance of ExchangeRate class (Make sure you have network connection for latest rates) by:
 ```ruby
     $ require 'FX_Rates'
     $ rates = FXRates::ExchangeRate.new
