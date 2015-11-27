@@ -33,7 +33,7 @@ Create an instance of ExchangeRate class by (Make sure you have network connecti
 
     $ rates.dates
 
-## To convert between two available currencies on a certain date:
+## To convert between two available currencies on a specific date:
 
     $ rates.at(date, from_currency, to_currency)
 
