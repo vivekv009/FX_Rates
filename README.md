@@ -11,31 +11,37 @@ gem 'FX_Rates'
 ```
 
 And then execute:
-
+```ruby
     $ bundle
+```   
 
 Or install it yourself as:
-
+```ruby
     $ gem install FX_Rates
+```
 
 ## Usage
 
 Create an instance of ExchangeRate class by (Make sure you have network connection for latest rates):
-
+```ruby
     $ require 'FX_Rates'
     $ rates = FXRates::ExchangeRate.new
+```    
 
 ## To view the list of currencies supported:
-
-    $ rates.currencies
+```ruby
+    $ rates.
+```    
 
 ##  To view the list of dates for which rates are available (upto 90 days from current date):
-
+```ruby
     $ rates.dates
+```    
 
 ## To convert between two available currencies on a specific date:
-
+```ruby
     $ rates.at(date, from_currency, to_currency)
+```    
 
 ## Contributing
 
