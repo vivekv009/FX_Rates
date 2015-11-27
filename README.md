@@ -28,17 +28,17 @@ Create an instance of ExchangeRate class (Make sure you have network connection 
     $ rates = FXRates::ExchangeRate.new
 ```    
 
-## To view the list of currencies supported:
+To view the list of currencies supported:
 ```ruby
     $ rates.currencies
 ```    
 
-##  To view the list of dates for which rates are available (upto 90 days from current date):
+To view the list of dates for which rates are available (upto 90 days from current date):
 ```ruby
     $ rates.dates
 ```    
 
-## To convert between two available currencies on a specific date:
+To convert between two available currencies on a specific date:
 ```ruby
     $ rates.at(date, from_currency, to_currency)
 ```    
