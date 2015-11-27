@@ -30,7 +30,7 @@ Create an instance of ExchangeRate class by (Make sure you have network connecti
 
 ## To view the list of currencies supported:
 ```ruby
-    $ rates.
+    $ rates.currencies
 ```    
 
 ##  To view the list of dates for which rates are available (upto 90 days from current date):
