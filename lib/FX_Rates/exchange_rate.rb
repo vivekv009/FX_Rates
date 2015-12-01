@@ -19,13 +19,16 @@ module FXRates
 
     def at(date, from_currency, to_currency)
       if @data_file.xpath("//*[@time = '#{date}']") 
-        to_rate = @data_file.xpath("//*[@time = '#{date}']").at_css("[@currency = '#{to_currency}']").attribute("rate").inner_text
-        from_rate = @data_file.xpath("//*[@time = '#{date}']").at_css("[@currency = '#{from_currency}']").attribute("rate").inner_text
-
-        to_rate.to_f / from_rate.to_f
+        get_rate_from_xml(date, to_currency).to_f / get_rate_from_xml(date, from_currency).to_f
       end
     end
-    
+
+
+    private
+
+    def get_rate_from_xml(date, currency)
+       @data_file.xpath("//*[@time = '#{date}']").at_css("[@currency = '#{currency}']").attribute("rate").inner_text
+    end    
 
     def fetch_data(file_name)
         begin
