@@ -3,16 +3,18 @@ require "spec_helper"
 module FXRates
 
 	describe ExchangeRate do
+
+		
 		context "AUD to INR conversion" do
 
 			let(:exchange_rate) { ExchangeRate.new }
 
 			it "returns a valid number" do
-				expect(exchange_rate.at("2015-04-02", "AUD", "INR")).to be > 0
+				expect(exchange_rate.at(exchange_rate.dates.max, "AUD", "INR")).to be > 0
 			end
 			
 			it "returns a decimal number" do
-				expect(exchange_rate.at("2015-04-07", "JPY", "USD").to_s).to be =~ /.(.*)/
+				expect(exchange_rate.at(exchange_rate.dates.max, "JPY", "USD").to_s).to be =~ /.(.*)/
 			end	
 
 		end	
@@ -22,11 +24,11 @@ module FXRates
 			let(:exchange_rate) { ExchangeRate.new }
 
 			it "returns a valid number" do
-				expect(exchange_rate.at("2015-04-07", "JPY", "USD")).to be > 0
+				expect(exchange_rate.at(exchange_rate.dates.sample, "JPY", "USD")).to be > 0
 			end
 			
 			it "returns a decimal number" do
-				expect(exchange_rate.at("2015-04-07", "JPY", "USD").to_s).to be =~ /.(.*)/
+				expect(exchange_rate.at(exchange_rate.dates.sample, "JPY", "USD").to_s).to be =~ /.(.*)/
 			end	
 
 		end
