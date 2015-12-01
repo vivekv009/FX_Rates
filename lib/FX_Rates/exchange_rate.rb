@@ -16,12 +16,10 @@ module FXRates
     end  
 
     def at(date, from_currency, to_currency)
-      if @data_file.xpath("//*[@time = '#{date}']") 
-        get_rate_from_xml(date, to_currency).to_f / get_rate_from_xml(date, from_currency).to_f
-      end
+        get_rate_from_xml(date, to_currency).to_f / get_rate_from_xml(date, from_currency).to_f if @dates.include?(date)
     end
 
-    
+
 
 
     private
