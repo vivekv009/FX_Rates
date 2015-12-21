@@ -19,5 +19,5 @@ module FXRates
     end
 
   end 
-  
+
 end   

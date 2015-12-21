@@ -5,26 +5,27 @@ module FXRates
 
   class XMLData
 
+    ECB_90_DAYS_URL = "http://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+
+
     def initialize  
         @days = []
 
         fetch_data("data.xml") 
         @data_file = Nokogiri::XML File.open("data.xml") 
         parse_xml
-
-        @currencies = currencies_list
-        @dates = dates_list
     end 
 
-    private
-
-    def currencies_list  
+    def currencies
         @days.first.currencies.map { |c| c.name } 
     end 
 
-    def dates_list
+    def dates
         @days.map { |d| d.day } 
-    end 
+    end
+
+
+    private
 
     def rate(date, currency)
         @days.detect { |d| d.day == date }.currencies.detect { |c| c.name == currency }.value
@@ -34,8 +35,7 @@ module FXRates
       @data_file.xpath("//xmlns:Cube").each do |day| 
           if day.attribute("time")
 
-           @days << ExchangeDate.new(day.attribute("time").value,
-           day.children.map do |currency|
+           @days << ExchangeDate.new(day.attribute("time").value, day.children.map do |currency|
               Currency.new(name: currency.attribute("currency").value, value: currency.attribute("rate").value)
            end)
 
@@ -45,7 +45,7 @@ module FXRates
  
     def fetch_data(file_name)
         begin
-         remote_data = open("http://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml").read
+         remote_data = open(ECB_90_DAYS_URL).read
         rescue OpenURI::HTTPError => e
           puts "Error #{e}"
         end 

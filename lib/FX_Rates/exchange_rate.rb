@@ -1,8 +1,7 @@
 module FXRates  
 
   class ExchangeRate < XMLData
-    attr_accessor :currencies, :dates
-
+    
     def initialize
         super
     end  
