@@ -1,6 +1,6 @@
 module FXRates  
 
-  class ExchangeRate < XMLData
+  class ExchangeRate < ECBData
     
     def initialize
         super
