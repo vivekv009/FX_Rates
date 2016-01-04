@@ -1,6 +1,6 @@
 module FXRates
 
-  class XMLData
+  class ECBData
 
     class ExchangeDate
       attr_accessor :day, :currencies
