@@ -3,7 +3,7 @@ require 'nokogiri'
 
 module FXRates
 
-  class XMLData
+  class ECBData
 
     ECB_90_DAYS_URL = "http://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
 
